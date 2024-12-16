@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ object.title }}{% endblock %}
+
+{% block content %}
+
+ <div class="container mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                {% if object.image %}
+                <img src="{{ object.image.url }}" class="img-fluid rounded" alt="{{ object.title }}">
+                {% else %}
+                 <span class="text-danger">Изображение отсутствует:(</span>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h1 class="mb-3">{{ object.title }}</h1>
+                <p class="text-muted">{{ object.description }}</p>
+                <p><strong>Состав:</strong> {{ object.composition }}</p>
+                <p><strong>Цена:</strong> <span class="text-primary">{{ object.price }} руб.</span></p>
+                {% if object.availability %}
+                    <p class="text-success">Товар в наличии</p>
+                    <form method="post" action="{% url 'cart:cart_add' product.slug %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="quantity">Количество:</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Добавить в корзину</button>
+                    </form>
+                {% else %}
+                    <p class="text-danger">К сожалению, данного продукта нет в настоящий момент:(</p>
+                {% endif %}
+                <a href="{% url 'catalog' %}" class="btn btn-secondary btn-lg mt-3">Вернуться назад</a>
+            </div>
+        </div>
+ </div>
+
+{% endblock %}

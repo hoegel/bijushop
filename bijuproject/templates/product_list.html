@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}Каталог{% endblock %}
+
+{% block content %}
+  {% if object_list.count == 0 %}
+  <h1>К сожалению, нет доступных товаров:(</h1>
+  {% endif %}
+  <div class="container mt-4">
+        <h1 class="text-center mb-4">Наши продукты</h1>
+        <div class="row">
+            {% for object in object_list %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+<!--                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}">-->
+                        <div class="card-body">
+                            <h5 class="card-title">{{ object.title }}</h5>
+                            <p class="card-text text-muted">{{ object.description }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <p class="card-text"><strong>Цена:</strong> {{ object.price }} руб.</p>
+                            {% if object.availability %}
+                                <p class="text-success">В наличии</p>
+                                <form method="post" action="{% url 'cart:cart_add' object.slug %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success mb-2">Добавить в корзину</button>
+                                </form>
+                            {% else %}
+                                <p class="text-danger">Нет в наличии</p>
+                            {% endif %}
+                            <a href="{{ object.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

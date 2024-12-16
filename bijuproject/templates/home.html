@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Домашняя страница{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron text-center">
+    <h1 class="display-4">Добро пожаловать в BIJU!</h1>
+    <p class="lead">Магазин косметики для самых изящных.</p>
+    <p class="lead">
+        <a class="btn btn-lg" href="{% url 'catalog' %}" style="background-color: #d44aaa;">Смотреть каталог</a>
+    </p>
+</div>
+
+<div class="row text-center my-4">
+    <div class="col-md-4">
+        <i class="bi bi-gem" style="font-size: 2rem; color: #d44aaa;"></i>
+        <h4>Высокое качество</h4>
+        <p>Мы предлагаем только проверенную и сертифицированную продукцию</p>
+    </div>
+    <div class="col-md-4">
+        <i class="bi bi-truck" style="font-size: 2rem; color: #d44aaa;"></i>
+        <h4>Быстрая доставка</h4>
+        <p>Доставляем заказы в кратчайшие сроки по всей стране</p>
+    </div>
+    <div class="col-md-4">
+        <i class="bi bi-heart" style="font-size: 2rem; color: #d44aaa;"></i>
+        <h4>Довольные клиенты</h4>
+        <p>Наши покупатели остаются счастливыми благодаря отличному сервису</p>
+    </div>
+</div>
+
+{% endblock %}
