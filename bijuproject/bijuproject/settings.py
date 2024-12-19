@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     #new
     'products',
     'cart',
+    'users',
 ]
 CART_SESSION_ID = 'cart'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -71,6 +72,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'bijuproject.wsgi.application'
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
