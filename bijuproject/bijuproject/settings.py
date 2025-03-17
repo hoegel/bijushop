@@ -2,7 +2,7 @@
 import os.path
 from pathlib import Path
 
-from django.conf.global_settings import MEDIA_URL, MEDIA_ROOT
+from django.conf.global_settings import MEDIA_URL, MEDIA_ROOT, LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     #new
     'products',
     'cart',
+    'users',
 ]
 CART_SESSION_ID = 'cart'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -103,7 +104,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = 'home'
 
+LOGOUT_REDIRECT_URL = 'home'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
